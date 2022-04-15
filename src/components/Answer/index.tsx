@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography } from '@mui/material'
 import { FC } from 'react'
 
 type AnswerProps = {
@@ -21,9 +21,7 @@ const Answer: FC<AnswerProps> = ({ isRightAnswer, answer }) => {
         >
           {!isRightAnswer && '不'}正解！
         </Typography>
-        <Typography>
-          正解は「{answer}」です！
-        </Typography>
+        <Typography>正解は「{answer}」です！</Typography>
       </Box>
     </>
   )
