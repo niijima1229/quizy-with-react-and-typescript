@@ -47,8 +47,7 @@ const Quiz: FC<QuizProps> = ({ quiz }) => {
     if (choiceIndex === answerIndex) {
       setIsRightAnswer(true)
     }
-    const buttonStyle = defaultButtonStyle
-    const buttonStyleUpdated: ButtonStyle[] = buttonStyle.map(
+    const buttonStyleUpdated: ButtonStyle[] = defaultButtonStyle.map(
       (style, index) => {
         if (index === answerIndex)
           return { variant: 'contained', color: 'primary' }
