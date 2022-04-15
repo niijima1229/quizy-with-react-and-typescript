@@ -1,10 +1,10 @@
-type Quizy = {
+export type Quiz = {
   id: number
   choices: string[]
   answerIndex: number
 }
 
-const data: Quizy[] = [
+const data: Quiz[] = [
   {
     id: 1,
     choices: ["こうわ", "たかなわ", "たかわ"],
