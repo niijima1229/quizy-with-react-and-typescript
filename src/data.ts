@@ -4,7 +4,7 @@ export type Quiz = {
   answerIndex: number
 }
 
-const data: Quiz[] = [
+const quizData: Quiz[] = [
   {
     id: 1,
     choices: ["こうわ", "たかなわ", "たかわ"],
@@ -57,4 +57,4 @@ const data: Quiz[] = [
   }
 ]
 
-export default data
+export default quizData
