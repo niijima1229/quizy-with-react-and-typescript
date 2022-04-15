@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from '@mui/material'
 import type { NextPage } from 'next'
+
 import Quiz from '../src/components/Quiz'
 import quizData from '../src/data'
 
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
           </Typography>
         </Box>
         {quizData.map((quiz) => {
-          return <Quiz quiz={quiz} />
+          return <Quiz quiz={quiz} key={quiz.id} />
         })}
       </Container>
     </>

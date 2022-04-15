@@ -1,6 +1,7 @@
-import { Box, Button } from "@mui/material"
-import { FC } from "react"
-import { ButtonStyle } from "../Quiz"
+import { Box, Button } from '@mui/material'
+import { FC } from 'react'
+
+import { ButtonStyle } from '../Quiz'
 
 type ChoiceListProps = {
   choices: string[]
@@ -8,12 +9,16 @@ type ChoiceListProps = {
   handleClick: (choiceIndex: number) => void
 }
 
-const ChoiceList: FC<ChoiceListProps> = ({ choices, buttonStyle, handleClick }) => {
+const ChoiceList: FC<ChoiceListProps> = ({
+  choices,
+  buttonStyle,
+  handleClick,
+}) => {
   return (
     <>
       {choices.map((choice, index) => {
         return (
-          <Box sx={{ width: '100%', mb: 2 }}>
+          <Box key={index} sx={{ width: '100%', mb: 2 }}>
             <Button
               variant={buttonStyle[index].variant}
               fullWidth={true}
