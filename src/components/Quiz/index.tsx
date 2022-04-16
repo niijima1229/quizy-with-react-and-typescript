@@ -7,13 +7,13 @@ import ChoiceList from '../ChoiceList'
 
 export type ButtonStyle = {
   color:
-  | 'inherit'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'error'
-  | 'info'
-  | 'warning'
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
   variant: 'text' | 'outlined' | 'contained'
 }
 
