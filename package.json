@@ -9,7 +9,8 @@
     "export": "next export",
     "check-types": "tsc --noEmit",
     "lint": "eslint --fix --ext .tsx,.ts,.json .",
-    "lint-fix": "eslint --fix --ext .tsx,.ts,.json ."
+    "lint-fix": "eslint --fix --ext .tsx,.ts,.json .",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -45,6 +46,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^7.0.4",
     "next-transpile-modules": "^9.0.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
