@@ -1,20 +1,36 @@
+import { Box } from '@mui/material'
 import type { VFC } from 'react'
 
 type Choice = {
   name: string
-  color: string
+  backgroundColor: string
+  textColor: string
   index: number
   showAnswerBox(index: number): void
 }
 
-const Choice: VFC<Choice> = ({ name, color, index, showAnswerBox }) => {
+const Choice: VFC<Choice> = ({
+  name,
+  backgroundColor,
+  textColor,
+  index,
+  showAnswerBox,
+}) => {
   return (
-    <div
+    <Box
       onClick={() => showAnswerBox(index)}
-      style={{ backgroundColor: color }}
+      mb={1}
+      sx={{
+        backgroundColor: backgroundColor,
+        color: textColor,
+        border: 'solid',
+        borderColor: '#f0f0f0',
+        padding: '10px',
+        fontWeight: 'bold',
+      }}
     >
       {name}
-    </div>
+    </Box>
   )
 }
 

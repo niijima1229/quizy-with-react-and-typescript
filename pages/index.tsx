@@ -7,7 +7,7 @@ import quizData from '../src/data'
 
 const AllQuiz: VFC = () => {
   return (
-    <Container>
+    <Container maxWidth="sm">
       <QuizTitle />
       {quizData.map((quiz) => {
         return <Question key={quiz.id} question_number={quiz.id} />

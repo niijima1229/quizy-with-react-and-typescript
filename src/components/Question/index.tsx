@@ -1,3 +1,4 @@
+import { Box, Typography } from '@mui/material'
 import { useState, VFC } from 'react'
 
 import Choice from '../../../src/components/Choices/index'
@@ -12,15 +13,15 @@ const Question: VFC<Question> = ({ question_number }) => {
   const answerIndex = quizData[questionNumberIndex].answerIndex
   const [answerBox, setAnswerBox] = useState(false)
   const [resultText, setResultText] = useState('')
-  const [choiceBackgroundColor, setChoiceBackgroundColor] = useState([
-    { color: 'white' },
-    { color: 'white' },
-    { color: 'white' },
+  const [choiceColor, setChoiceColor] = useState([
+    { backgroundColor: 'white', textColor: 'black' },
+    { backgroundColor: 'white', textColor: 'black' },
+    { backgroundColor: 'white', textColor: 'black' },
   ])
   const showAnswerBox = (index: number): void => {
     if (answerBox) return
     judgeAnswer(index)
-    addingChoiceBackgroundColor(index)
+    addingChoiceColor(index)
     setAnswerBox(true)
   }
   const judgeAnswer = (index: number): void => {
@@ -30,21 +31,25 @@ const Question: VFC<Question> = ({ question_number }) => {
       setResultText('不正解')
     }
   }
-  const addingChoiceBackgroundColor = (chosenIndex: number): void => {
+  const addingChoiceColor = (chosenIndex: number): void => {
     for (let i = 0; i < 3; i++) {
       if (i === answerIndex) {
-        choiceBackgroundColor[i].color = 'blue'
+        choiceColor[i].backgroundColor = '#287dff'
+        choiceColor[i].textColor = 'white'
         return
       }
       if (i === chosenIndex) {
-        choiceBackgroundColor[i].color = 'red'
+        choiceColor[i].backgroundColor = '#ff5128'
+        choiceColor[i].textColor = 'white'
       }
     }
-    setChoiceBackgroundColor(choiceBackgroundColor)
+    setChoiceColor(choiceColor)
   }
   return (
     <>
-      <p>{question_number}.この地名はなんて読む？</p>
+      <Typography mt={3} sx={{ fontWeight: 'bold' }}>
+        {question_number}.この地名はなんて読む？
+      </Typography>
       {/* 10番目までは画像の先頭に0がつくので制御 */}
       <img
         src={`../../../img/kuizy${
@@ -58,15 +63,35 @@ const Question: VFC<Question> = ({ question_number }) => {
             key={index}
             index={index}
             name={choice}
-            color={choiceBackgroundColor[index].color}
+            backgroundColor={choiceColor[index].backgroundColor}
+            textColor={choiceColor[index].textColor}
             showAnswerBox={showAnswerBox}
           />
         )
       })}
-      <div style={{ display: answerBox ? 'block' : 'none' }}>
-        <p>{resultText}</p>
-        <p>正解は{quizData[questionNumberIndex].choices[answerIndex]}です</p>
-      </div>
+      <Box
+        sx={{
+          display: answerBox ? 'block' : 'none',
+          backgroundColor: '#f5f5f5',
+          padding: '20px',
+        }}
+      >
+        <Typography
+          mb={3}
+          sx={{
+            display: 'inline-block',
+            borderRadius: '2px',
+            borderBottom: 'solid 2px',
+            borderBottomColor: resultText === '正解' ? '#287dff' : '#ff5128',
+            fontWeight: 'bold',
+          }}
+        >
+          {resultText}
+        </Typography>
+        <Typography>
+          正解は{quizData[questionNumberIndex].choices[answerIndex]}です
+        </Typography>
+      </Box>
     </>
   )
 }
