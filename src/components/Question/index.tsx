@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState, VFC } from 'react'
 
 import Choice from '../../../src/components/Choices/index'
 import quizData from '../../data'
@@ -8,7 +7,7 @@ type Question = {
   question_number: number
 }
 
-const Question = ({ question_number }: Question) => {
+const Question: VFC<Question> = ({ question_number }) => {
   const questionNumberIndex = question_number - 1
   const answerIndex = quizData[questionNumberIndex].answerIndex
   const [answerBox, setAnswerBox] = useState(false)
@@ -32,15 +31,15 @@ const Question = ({ question_number }: Question) => {
     }
   }
   const addingChoiceBackgroundColor = (chosenIndex: number): void => {
-    choiceBackgroundColor.map((color, index) => {
-      if (index === answerIndex) {
-        choiceBackgroundColor[index].color = 'blue'
+    for (let i = 0; i < 3; i++) {
+      if (i === answerIndex) {
+        choiceBackgroundColor[i].color = 'blue'
         return
       }
-      if (index === chosenIndex) {
-        choiceBackgroundColor[index].color = 'red'
+      if (i === chosenIndex) {
+        choiceBackgroundColor[i].color = 'red'
       }
-    })
+    }
     setChoiceBackgroundColor(choiceBackgroundColor)
   }
   return (
@@ -54,23 +53,14 @@ const Question = ({ question_number }: Question) => {
         alt="問題の写真"
       />
       {quizData[questionNumberIndex].choices.map((choice, index) => {
-        // うまく動かせていないが最終的にはこちらを使う
-        // return (
-        //   <Choice
-        //     key={index}
-        //     name={`${choice}`}
-        //     color={choiceBackgroundColor[index].color}
-        //     showAnswerBox={showAnswerBox}
-        //   />
-        // )
         return (
-          <div
+          <Choice
             key={index}
-            style={{ backgroundColor: choiceBackgroundColor[index].color }}
-            onClick={() => showAnswerBox(index)}
-          >
-            <p>{choice}</p>
-          </div>
+            index={index}
+            name={choice}
+            color={choiceBackgroundColor[index].color}
+            showAnswerBox={showAnswerBox}
+          />
         )
       })}
       <div style={{ display: answerBox ? 'block' : 'none' }}>

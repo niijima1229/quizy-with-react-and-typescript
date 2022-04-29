@@ -1,4 +1,4 @@
-import type React from 'react'
+import type { VFC } from 'react'
 
 type Choice = {
   name: string
@@ -7,8 +7,15 @@ type Choice = {
   showAnswerBox(index: number): void
 }
 
-const Choice: React.VFC = (props: Choice) => {
-  return <div onClick={() => props.showAnswerBox(0)}>{props.name}</div>
+const Choice: VFC<Choice> = ({ name, color, index, showAnswerBox }) => {
+  return (
+    <div
+      onClick={() => showAnswerBox(index)}
+      style={{ backgroundColor: color }}
+    >
+      {name}
+    </div>
+  )
 }
 
 export default Choice

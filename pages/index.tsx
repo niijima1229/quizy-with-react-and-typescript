@@ -1,18 +1,17 @@
 import { Container } from '@mui/material'
-import type React from 'react'
+import { VFC } from 'react'
 
 import Question from '../src/components/Question/index'
 import QuizTitle from '../src/components/Titles/quizTitle'
-import quizData, {Quiz} from '../src/data'
+import quizData from '../src/data'
 
-const AllQuiz: React.FC = () => {
+const AllQuiz: VFC = () => {
   return (
     <Container>
       <QuizTitle />
       {quizData.map((quiz) => {
         return <Question key={quiz.id} question_number={quiz.id} />
       })}
-      <Question question_number={1} />
     </Container>
   )
 }
