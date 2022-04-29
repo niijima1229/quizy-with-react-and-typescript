@@ -1,24 +1,20 @@
-import { Box, Container, Typography } from '@mui/material'
-import type { NextPage } from 'next'
+import { Container } from '@mui/material'
+import type React from 'react'
 
-import Quiz from '../src/components/Quiz'
-import quizData from '../src/data'
+import Question from '../src/components/Question/index'
+import QuizTitle from '../src/components/Titles/quizTitle'
+import quizData, {Quiz} from '../src/data'
 
-const Home: NextPage = () => {
+const AllQuiz: React.FC = () => {
   return (
-    <>
-      <Container maxWidth="sm">
-        <Box sx={{ mt: 5, mb: 6 }}>
-          <Typography variant="h6" align="center" fontWeight="bold">
-            ガチで東京の人しか解けない！ #東京の難読地名クイズ
-          </Typography>
-        </Box>
-        {quizData.map((quiz) => {
-          return <Quiz quiz={quiz} key={quiz.id} />
-        })}
-      </Container>
-    </>
+    <Container>
+      <QuizTitle />
+      {quizData.map((quiz) => {
+        return <Question key={quiz.id} question_number={quiz.id} />
+      })}
+      <Question question_number={1} />
+    </Container>
   )
 }
 
-export default Home
+export default AllQuiz
